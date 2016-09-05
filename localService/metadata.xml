@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGWSD_NOTIFICACION_SRV" xml:lang="es" sap:schema-version="0"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="OrdenServicio" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Aufnr"/>
+                    <PropertyRef Name="Auart"/>
+                    <PropertyRef Name="Werks"/>
+                    <PropertyRef Name="Qmart"/>
+                    <PropertyRef Name="Qmnum"/>
+                    <PropertyRef Name="Rbnr"/>
+                    <PropertyRef Name="Aufpl"/>
+                </Key>
+                <Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Orden" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Auart" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Clase de orden" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Addat" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Fecha ref." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aduhr" Type="Edm.Time" Nullable="false" Precision="0" sap:label="Hora referencia" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Arbpl" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Puesto trabajo" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Qmart" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Clase de aviso" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Qmnum" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Aviso" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rbnr" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Perfil catálogo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bita" Type="Edm.String" Nullable="false" sap:label="Bitácora Aviso" sap:creatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Estat" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Status usuario" sap:creatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ilart" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Cl.actividad PM" sap:creatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aufpl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Nº HRuta op." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="StatusSet" Relationship="ZGWSD_NOTIFICACION_SRV.StatusOrdenServicio" FromRole="FromRole_StatusOrdenServicio" ToRole="ToRole_StatusOrdenServicio"/>
+                <NavigationProperty Name="ParteSet" Relationship="ZGWSD_NOTIFICACION_SRV.ParteOrdenServicio" FromRole="FromRole_ParteOrdenServicio" ToRole="ToRole_ParteOrdenServicio"/>
+                <NavigationProperty Name="OperacionOrdSerSet" Relationship="ZGWSD_NOTIFICACION_SRV.OperacionOrdenServicio" FromRole="FromRole_OperacionOrdenServicio" ToRole="ToRole_OperacionOrdenServicio"/>
+                <NavigationProperty Name="SintomaSet" Relationship="ZGWSD_NOTIFICACION_SRV.SintomaOrdenServicio" FromRole="FromRole_SintomaOrdenServicio" ToRole="ToRole_SintomaOrdenServicio"/>
+                <NavigationProperty Name="ConjuntoSet" Relationship="ZGWSD_NOTIFICACION_SRV.ConjuntoOrdenServicio" FromRole="FromRole_ConjuntoOrdenServicio" ToRole="ToRole_ConjuntoOrdenServicio"/>
+                <NavigationProperty Name="ActividadSet" Relationship="ZGWSD_NOTIFICACION_SRV.ActividadOrdenServicio" FromRole="FromRole_ActividadOrdenServicio" ToRole="ToRole_ActividadOrdenServicio"/>
+                <NavigationProperty Name="CausaSet" Relationship="ZGWSD_NOTIFICACION_SRV.CausaOrdenServicio" FromRole="FromRole_CausaOrdenServicio" ToRole="ToRole_CausaOrdenServicio"/>
+            </EntityType>
+            <EntityType Name="Status" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Estat"/>
+                    <PropertyRef Name="Stsma"/>
+                    <PropertyRef Name="Qmart"/>
+                </Key>
+                <Property Name="Txt30" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Txt04" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Estat" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Status usuario" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Stsma" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Esquema status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Qmart" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Clase de aviso" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="OrdenServicioSet" Relationship="ZGWSD_NOTIFICACION_SRV.StatusOrdenServicio" FromRole="ToRole_StatusOrdenServicio" ToRole="FromRole_StatusOrdenServicio"/>
+            </EntityType>
+            <EntityType Name="OperacionOrdSer" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Vornr"/>
+                    <PropertyRef Name="Aufpl"/>
+                    <PropertyRef Name="Aufnr"/>
+                </Key>
+                <Property Name="Iedz" Type="Edm.Time" Precision="0" sap:label="Fin real(hora)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Iedd" Type="Edm.DateTime" Precision="0" sap:label="Fin ejecución" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Isdz" Type="Edm.Time" Precision="0" sap:label="Inic.real(hora)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Isdd" Type="Edm.DateTime" Precision="0" sap:label="Inicio ejecuc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ausor" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Comp.reservas" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aueru" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Notif.final" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Arbeh" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Unidad trabajo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Arbei" Type="Edm.Decimal" Nullable="false" Precision="7" Scale="1" sap:unit="P299FEBE4D818C955B12313AECD7333A3" sap:label="Trabajo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ltxa1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Txt.brv.oper." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vornr" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Operación" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aufpl" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Nº HRuta op." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Orden" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <NavigationProperty Name="OrdenServicioSet" Relationship="ZGWSD_NOTIFICACION_SRV.OperacionOrdenServicio" FromRole="ToRole_OperacionOrdenServicio" ToRole="FromRole_OperacionOrdenServicio"/>
+            </EntityType>
+            <EntityType Name="Parte" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Grupoc"/>
+                    <PropertyRef Name="Rbnr"/>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="Grupoc" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Grupo códigos" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rbnr" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Perfil catálogo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Código" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Descod" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="TxtBreveCódigo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="OrdenServicioSet" Relationship="ZGWSD_NOTIFICACION_SRV.ParteOrdenServicio" FromRole="ToRole_ParteOrdenServicio" ToRole="FromRole_ParteOrdenServicio"/>
+            </EntityType>
+            <EntityType Name="Sintoma" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Rbnr"/>
+                    <PropertyRef Name="Grupoc"/>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="Rbnr" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Perfil catálogo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Grupoc" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Grupo códigos" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Código" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Descod" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="TxtBreveCódigo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="OrdenServicioSet" Relationship="ZGWSD_NOTIFICACION_SRV.SintomaOrdenServicio" FromRole="ToRole_SintomaOrdenServicio" ToRole="FromRole_SintomaOrdenServicio"/>
+            </EntityType>
+            <EntityType Name="Material" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Werks"/>
+                    <PropertyRef Name="Matnr"/>
+                </Key>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Denominación" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Vkorg" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Organiz.ventas" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vtweg" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Canal distrib." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mtart" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Tipo material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Conjunto" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Qmnum"/>
+                    <PropertyRef Name="Idpos"/>
+                    <PropertyRef Name="Bautl"/>
+                    <PropertyRef Name="Werks"/>
+                </Key>
+                <Property Name="Qmnum" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Aviso" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Idpos" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Posición" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Bautl" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Conjunto" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bautx" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Denominación" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Canti" Type="Edm.Int32" Nullable="false" sap:label="Texto" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Otgrp" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Grupo códigos" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Oteil" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Cód.parte obj." sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Txtcdot" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Txt CódPartObj." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fegrp" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Grupo códigos" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fecod" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Código averia" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Txtcdfe" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Texto de avería" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Urgrp" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Grupo códigos" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Urcod" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Causas avería" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Txtcdur" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Txt CódigoCausa" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="OrdenServicioSet" Relationship="ZGWSD_NOTIFICACION_SRV.ConjuntoOrdenServicio" FromRole="ToRole_ConjuntoOrdenServicio" ToRole="FromRole_ConjuntoOrdenServicio"/>
+                <NavigationProperty Name="MedidasSet" Relationship="ZGWSD_NOTIFICACION_SRV.MedidasConjunto" FromRole="FromRole_MedidasConjunto" ToRole="ToRole_MedidasConjunto"/>
+            </EntityType>
+            <EntityType Name="Actividad" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Auart"/>
+                </Key>
+                <Property Name="Auart" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Clase de orden" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ilart" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Cl.actividad PM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="OrdenServicioSet" Relationship="ZGWSD_NOTIFICACION_SRV.ActividadOrdenServicio" FromRole="ToRole_ActividadOrdenServicio" ToRole="FromRole_ActividadOrdenServicio"/>
+            </EntityType>
+            <EntityType Name="Causa" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Rbnr"/>
+                    <PropertyRef Name="Grupoc"/>
+                    <PropertyRef Name="Code"/>
+                </Key>
+                <Property Name="Rbnr" Type="Edm.String" Nullable="false" MaxLength="9" sap:label="Perfil catálogo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Grupoc" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Grupo códigos" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Código" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Descod" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="TxtBreveCódigo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="OrdenServicioSet" Relationship="ZGWSD_NOTIFICACION_SRV.CausaOrdenServicio" FromRole="ToRole_CausaOrdenServicio" ToRole="FromRole_CausaOrdenServicio"/>
+            </EntityType>
+            <EntityType Name="Medidas" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Werks"/>
+                    <PropertyRef Name="Qmnum"/>
+                    <PropertyRef Name="Idpos"/>
+                    <PropertyRef Name="Posnr"/>
+                </Key>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Qmnum" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Aviso" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Idpos" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Posición" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Posnr" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Número clasif." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Katalogart" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Catálogo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Codegruppe" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Grupo códigos" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Code" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Código" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Version" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="Versión" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Kurztext" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="TxtBreveCódigo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Texto-medidas" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ConjuntoSet" Relationship="ZGWSD_NOTIFICACION_SRV.MedidasConjunto" FromRole="ToRole_MedidasConjunto" ToRole="FromRole_MedidasConjunto"/>
+            </EntityType>
+            <EntityType Name="Centro" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Werks"/>
+                </Key>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Nombre 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PuestoTrabajo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Werks"/>
+                    <PropertyRef Name="Arbpl"/>
+                </Key>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Arbpl" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Puesto trabajo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Denomi" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Denomin." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="StatusOrdenServicio" sap:content-version="1">
+                <End Type="ZGWSD_NOTIFICACION_SRV.OrdenServicio" Multiplicity="1" Role="FromRole_StatusOrdenServicio"/>
+                <End Type="ZGWSD_NOTIFICACION_SRV.Status" Multiplicity="*" Role="ToRole_StatusOrdenServicio"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_StatusOrdenServicio">
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Werks"/>
+                        <PropertyRef Name="Aufpl"/>
+                    </Principal>
+                    <Dependent Role="ToRole_StatusOrdenServicio">
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Qmart"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ParteOrdenServicio" sap:content-version="1">
+                <End Type="ZGWSD_NOTIFICACION_SRV.OrdenServicio" Multiplicity="1" Role="FromRole_ParteOrdenServicio"/>
+                <End Type="ZGWSD_NOTIFICACION_SRV.Parte" Multiplicity="*" Role="ToRole_ParteOrdenServicio"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ParteOrdenServicio">
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Werks"/>
+                        <PropertyRef Name="Aufpl"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ParteOrdenServicio">
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="SintomaOrdenServicio" sap:content-version="1">
+                <End Type="ZGWSD_NOTIFICACION_SRV.OrdenServicio" Multiplicity="1" Role="FromRole_SintomaOrdenServicio"/>
+                <End Type="ZGWSD_NOTIFICACION_SRV.Sintoma" Multiplicity="*" Role="ToRole_SintomaOrdenServicio"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_SintomaOrdenServicio">
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Werks"/>
+                        <PropertyRef Name="Aufpl"/>
+                    </Principal>
+                    <Dependent Role="ToRole_SintomaOrdenServicio">
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ConjuntoOrdenServicio" sap:content-version="1">
+                <End Type="ZGWSD_NOTIFICACION_SRV.OrdenServicio" Multiplicity="1" Role="FromRole_ConjuntoOrdenServicio"/>
+                <End Type="ZGWSD_NOTIFICACION_SRV.Conjunto" Multiplicity="*" Role="ToRole_ConjuntoOrdenServicio"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ConjuntoOrdenServicio">
+                        <PropertyRef Name="Aufpl"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Werks"/>
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Auart"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ConjuntoOrdenServicio">
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Qmnum"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ActividadOrdenServicio" sap:content-version="1">
+                <End Type="ZGWSD_NOTIFICACION_SRV.OrdenServicio" Multiplicity="1" Role="FromRole_ActividadOrdenServicio"/>
+                <End Type="ZGWSD_NOTIFICACION_SRV.Actividad" Multiplicity="*" Role="ToRole_ActividadOrdenServicio"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ActividadOrdenServicio">
+                        <PropertyRef Name="Aufpl"/>
+                        <PropertyRef Name="Werks"/>
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Qmnum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ActividadOrdenServicio">
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Auart"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CausaOrdenServicio" sap:content-version="1">
+                <End Type="ZGWSD_NOTIFICACION_SRV.OrdenServicio" Multiplicity="1" Role="FromRole_CausaOrdenServicio"/>
+                <End Type="ZGWSD_NOTIFICACION_SRV.Causa" Multiplicity="*" Role="ToRole_CausaOrdenServicio"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CausaOrdenServicio">
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Werks"/>
+                        <PropertyRef Name="Aufpl"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Qmart"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CausaOrdenServicio">
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Rbnr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="OperacionOrdenServicio" sap:content-version="1">
+                <End Type="ZGWSD_NOTIFICACION_SRV.OrdenServicio" Multiplicity="1" Role="FromRole_OperacionOrdenServicio"/>
+                <End Type="ZGWSD_NOTIFICACION_SRV.OperacionOrdSer" Multiplicity="*" Role="ToRole_OperacionOrdenServicio"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_OperacionOrdenServicio">
+                        <PropertyRef Name="Aufpl"/>
+                        <PropertyRef Name="Rbnr"/>
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Qmart"/>
+                        <PropertyRef Name="Werks"/>
+                        <PropertyRef Name="Auart"/>
+                        <PropertyRef Name="Aufnr"/>
+                    </Principal>
+                    <Dependent Role="ToRole_OperacionOrdenServicio">
+                        <PropertyRef Name="Aufpl"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                        <PropertyRef Name="Aufnr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="MedidasConjunto" sap:content-version="1">
+                <End Type="ZGWSD_NOTIFICACION_SRV.Conjunto" Multiplicity="1" Role="FromRole_MedidasConjunto"/>
+                <End Type="ZGWSD_NOTIFICACION_SRV.Medidas" Multiplicity="*" Role="ToRole_MedidasConjunto"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_MedidasConjunto">
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Idpos"/>
+                        <PropertyRef Name="Bautl"/>
+                        <PropertyRef Name="Werks"/>
+                    </Principal>
+                    <Dependent Role="ToRole_MedidasConjunto">
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Idpos"/>
+                        <PropertyRef Name="Qmnum"/>
+                        <PropertyRef Name="Werks"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZGWSD_NOTIFICACION_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="StatusSet" EntityType="ZGWSD_NOTIFICACION_SRV.Status" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="OperacionOrdSerSet" EntityType="ZGWSD_NOTIFICACION_SRV.OperacionOrdSer" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ParteSet" EntityType="ZGWSD_NOTIFICACION_SRV.Parte" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SintomaSet" EntityType="ZGWSD_NOTIFICACION_SRV.Sintoma" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialSet" EntityType="ZGWSD_NOTIFICACION_SRV.Material" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ConjuntoSet" EntityType="ZGWSD_NOTIFICACION_SRV.Conjunto" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ActividadSet" EntityType="ZGWSD_NOTIFICACION_SRV.Actividad" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CausaSet" EntityType="ZGWSD_NOTIFICACION_SRV.Causa" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MedidasSet" EntityType="ZGWSD_NOTIFICACION_SRV.Medidas" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CentroSet" EntityType="ZGWSD_NOTIFICACION_SRV.Centro" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PuestoTrabajoSet" EntityType="ZGWSD_NOTIFICACION_SRV.PuestoTrabajo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="OrdenServicioSet" EntityType="ZGWSD_NOTIFICACION_SRV.OrdenServicio" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="ParteOrdenServicioSet" Association="ZGWSD_NOTIFICACION_SRV.ParteOrdenServicio" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OrdenServicioSet" Role="FromRole_ParteOrdenServicio"/>
+                    <End EntitySet="ParteSet" Role="ToRole_ParteOrdenServicio"/>
+                </AssociationSet>
+                <AssociationSet Name="ConjuntoOrdenServicioSet" Association="ZGWSD_NOTIFICACION_SRV.ConjuntoOrdenServicio" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OrdenServicioSet" Role="FromRole_ConjuntoOrdenServicio"/>
+                    <End EntitySet="ConjuntoSet" Role="ToRole_ConjuntoOrdenServicio"/>
+                </AssociationSet>
+                <AssociationSet Name="CausaOrdenServicioSet" Association="ZGWSD_NOTIFICACION_SRV.CausaOrdenServicio" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OrdenServicioSet" Role="FromRole_CausaOrdenServicio"/>
+                    <End EntitySet="CausaSet" Role="ToRole_CausaOrdenServicio"/>
+                </AssociationSet>
+                <AssociationSet Name="ActividadOrdenServicioSet" Association="ZGWSD_NOTIFICACION_SRV.ActividadOrdenServicio" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OrdenServicioSet" Role="FromRole_ActividadOrdenServicio"/>
+                    <End EntitySet="ActividadSet" Role="ToRole_ActividadOrdenServicio"/>
+                </AssociationSet>
+                <AssociationSet Name="SintomaOrdenServicioSet" Association="ZGWSD_NOTIFICACION_SRV.SintomaOrdenServicio" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OrdenServicioSet" Role="FromRole_SintomaOrdenServicio"/>
+                    <End EntitySet="SintomaSet" Role="ToRole_SintomaOrdenServicio"/>
+                </AssociationSet>
+                <AssociationSet Name="MedidasConjuntoSet" Association="ZGWSD_NOTIFICACION_SRV.MedidasConjunto" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ConjuntoSet" Role="FromRole_MedidasConjunto"/>
+                    <End EntitySet="MedidasSet" Role="ToRole_MedidasConjunto"/>
+                </AssociationSet>
+                <AssociationSet Name="OperacionOrdenServicioSet" Association="ZGWSD_NOTIFICACION_SRV.OperacionOrdenServicio" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OrdenServicioSet" Role="FromRole_OperacionOrdenServicio"/>
+                    <End EntitySet="OperacionOrdSerSet" Role="ToRole_OperacionOrdenServicio"/>
+                </AssociationSet>
+                <AssociationSet Name="StatusOrdenServicioSet" Association="ZGWSD_NOTIFICACION_SRV.StatusOrdenServicio" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OrdenServicioSet" Role="FromRole_StatusOrdenServicio"/>
+                    <End EntitySet="StatusSet" Role="ToRole_StatusOrdenServicio"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="./sap/ZGWSD_NOTIFICACION_SRV/$metadata"
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+                <atom:link rel="latest-version" href="./sap/ZGWSD_NOTIFICACION_SRV/$metadata"
+                    xmlns:atom="http://www.w3.org/2005/Atom"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

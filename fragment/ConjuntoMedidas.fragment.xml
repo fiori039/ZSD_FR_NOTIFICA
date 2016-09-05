@@ -1,0 +1,82 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns="sap.m">
+	<Dialog class="sapUiContentPadding" title="Conjunto y Medidas" xmlns:l="sap.ui.layout">
+		
+		<Panel class="sapUiResponsiveMargin" headerText="Pos. Conjunto" expandable="true" expanded="false">
+			<content>
+				<l:VerticalLayout class="sapUiContentPadding" width="100%">
+					<l:content>
+						<Label design="Bold" required="true" text="Material"/>
+						<Input id="cod_material_select" value="" showValueHelp="true" valueHelpRequest="f_ayuda_busqueda_material" valueHelpOnly="true"/>
+						
+						<Label id="text_material" text="Descrip. Material"/>
+						<Input id="desc_material_select" enabled="false" value=""></Input>
+						
+						<Label design="Bold" required="true" text="Cantidad"/>
+						<Input id="cantidad_select" value="0.0"/>
+						
+						<Label design="Bold" required="true" text="Sintoma"/>
+						<Input id="cod_sintoma_select" value="{Fecod}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="f_ayuda_busqueda_sint"></Input>
+						<Label id="text_sintoma" text=""/>
+						
+						<Label design="Bold" required="true" text="Parte"/>
+						<Input id="cod_parte_select" value="{Oteil}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="f_ayuda_busqueda_parte"></Input>
+						<Label id="text_parte" text=""/>
+						
+						<Label design="Bold" required="true" text="Causa"/>
+						<Input id="cod_causa_select" value="{Urcod}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="f_ayuda_busqueda_causa"></Input>
+						<Label id="text_causa" text=""/>
+							
+						<!--<core:Icon color="red" id="btn_eliminar" press="f_confir_elimina_conjunto" size="2em" src="sap-icon://delete" visible="true"/>-->
+					</l:content>
+				</l:VerticalLayout>
+			</content>
+		</Panel>
+		
+		<Panel class="sapUiResponsiveMargin" headerText="Medidas de Posición" expandable="true" expanded="true">
+			<content>
+				<l:VerticalLayout class="sapUiContentPadding" width="100%">
+					<l:content>
+						<Table visible="true" id="tbl_medida" width="auto" mode="SingleSelectMaster" items="{/MedidasSet}" updateFinished="onListUpdateFinished" noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin" selectionChange="f_dialogo_conjunto">
+							<headerToolbar>
+								<Toolbar id="lineItemsToolbar_medida">
+									<Title id="lineItemsHeader_medida" text="{detailView>/lineItemListTitle}"/>
+								</Toolbar>
+							</headerToolbar>
+							
+							<items>
+							<!--<ColumnListItem counter="0" id="__itemXX" visible="{= ${Opera} > 1 ? true : false}">-->
+								<ColumnListItem counter="0" id="__item01" visible="true">
+									<cells>
+										<Label id="lbl_descripcion" text="{Vornr}"/>
+										<Label id="lbl_valor" text="{Ltxa1}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+							
+							<columns>
+								<Column id="__columnmedida1" mergeDuplicates="false">
+									<header>
+										<Label id="cab_descripcion" text="Descripción" design="Bold"/>
+									</header>
+								</Column>
+								<Column id="__columnmedida2" mergeDuplicates="false">
+									<header>
+										<Label id="cab_valor" text="Valor" design="Bold"/>
+									</header>
+								</Column>
+							</columns>
+							
+						</Table>
+					</l:content>
+				</l:VerticalLayout>
+			</content>
+		</Panel>
+		
+		<beginButton>
+			<Button id="btn_cancela_conjunto" press="f_close_dialogo_conjunto" text="Cancelar" type="Reject"/>
+		</beginButton>
+		<endButton>
+			<Button id="btn_conjunto_select" press="f_actualiza_conjunto" text="Guardar" type="Accept"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

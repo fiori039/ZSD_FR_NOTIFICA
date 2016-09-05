@@ -1,0 +1,128 @@
+<mvc:View controllerName="com.corona.controller.Detail" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:f="sap.ui.layout.form">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}"	busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<semantic:content>
+			<ObjectHeader id="objectHeader" title="Aviso: {Qmnum} \n Orden: {Aufnr}" intro="{Werks} - {Arbpl}" iconActive="false"/>
+			
+			<!--Formulario superior-->
+			<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="newEntitySimpleForm" labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024" title="{= ${viewModel>/mode} === 'edit'? 'Datos generales del Aviso': 'New ZGWSD_PRIMERCONTACTO_SRV.Avisos'}">
+				<f:content>
+					<Label text="N. Aviso"/>
+					<Input name="Qmnum" id="Qmnum_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="false" visible="false" value="{ path: 'Qmnum', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:12, nullable:false } }"/>
+					<Label text="N. Orden"/>
+					<Input name="Aufnr" id="Aufnr_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="false" visible="false" value="{ path: 'Aufnr', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:12, nullable:false } }"/>
+					
+					<Label text="Status usuario" required="true"/>
+					<Input id="txt_status_usr" value="{Estat}" class="sapUiSmallMarginBottom" valueHelpOnly="true" type="Text" placeholder="Seleccione Status" enabled="true" editable="true" showValueHelp="true" valueHelpRequest="handleValueHelp_status"/>
+					
+					<Label text="Actividad PM" required="true"/>
+					<Input id="txt_actividad" value="{Ilart}" class="sapUiSmallMarginBottom" valueHelpOnly="true" type="Text" placeholder="Seleccione Actividad PM" enabled="true" editable="true" showValueHelp="true" valueHelpRequest="handleValueHelp_actividad"/>
+				</f:content>
+			</f:SimpleForm>
+			
+			<!--Tabla de Operaciones de Orden de Servicio-->
+			<Panel class="sapUiResponsiveMargin" headerText="Operaciones Orden de Servicio" expandable="true" expanded="false">
+				<Table visible="true" id="tbl_operacion" width="auto" mode="SingleSelectMaster" items="{OperacionOrdSerSet}" updateFinished="onListUpdateFinished" noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin" selectionChange="f_dialogo_notificar">
+					<headerToolbar>
+						<Toolbar id="lineItemsToolbar_operacion">
+							<Title id="lineItemsHeader_operacion" text="{detailView>/lineItemListTitle}"/>
+						</Toolbar>
+					</headerToolbar>
+					
+					<items>
+					<!--<ColumnListItem counter="0" id="__item12" visible="{= ${Opera} > 1 ? true : false}">-->
+						<ColumnListItem counter="0" id="__item01" visible="true">
+							<cells>
+								<Label id="lbl_posicion" text="{Vornr}"/>
+								<Label id="lbl_actividad" text="{Ltxa1}"/>
+								<Label id="lbl_tiempoplan" text="{Arbei} {Arbeh}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				
+					<columns>
+						<Column id="__columnoperacion1" mergeDuplicates="false">
+							<header>
+								<Label id="cab_posicion" text="Posición" design="Bold"/>
+							</header>
+						</Column>
+						<Column id="__columnoperacion2" mergeDuplicates="false">
+							<header>
+								<Label id="cab_actividad" text="Actividad" design="Bold"/>
+							</header>
+						</Column>
+						<Column id="__columnoperacion3" mergeDuplicates="false">
+							<header>
+								<Label id="cab_tiempoplan" text="Tiempo Plan" design="Bold"/>
+							</header>
+						</Column>
+					</columns>
+					
+				</Table>
+			</Panel>
+			
+			<!--Tabla de Posiciones de Aviso-->
+			<Panel class="sapUiResponsiveMargin" headerText="Conjuntos de Aviso" expandable="true" expanded="false">
+				<Table visible="true" id="tbl_conjunto" width="auto" mode="SingleSelectMaster" items="{ConjuntoSet}" updateFinished="onListUpdateFinished" noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin" selectionChange="f_dialogo_conjunto">
+					<headerToolbar>
+						<Toolbar id="lineItemsToolbar_Conjunto">
+							<Title id="lineItemsHeader_Conjunto" text="{detailView>/lineItemListTitle}"/>
+						</Toolbar>
+					</headerToolbar>
+					
+					<items>
+						<!--<ColumnListItem counter="0" id="__item12" visible="{= ${Opera} > 1 ? true : false}">-->
+						<ColumnListItem counter="0" id="__item02" visible="true">
+							<cells>
+								<Label id="lbl_material" text="{Bautl}"/>
+								<Label id="lbl_descripcion" text="{Bautx}"/>
+								<Label id="lbl_cantidad" text="{Canti}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				
+					<columns>
+						<Column id="__columnconjunto1" mergeDuplicates="false">
+							<header>
+								<Label id="cab_material" text="Cod. Material" design="Bold"/>
+							</header>
+						</Column>
+						<Column id="__columnconjunto2" mergeDuplicates="false">
+							<header>
+								<Label id="cab_descripcion" text="Descripción" design="Bold"/>
+							</header>
+						</Column>
+						<Column id="__columnconjunto3" mergeDuplicates="false">
+							<header>
+								<Label id="cab_cantidad" text="Cant." design="Bold"/>
+							</header>
+						</Column>
+					</columns>
+					
+				</Table>
+			</Panel>
+			
+			<!--Historial-->
+			<Panel class="sapUiResponsiveMargin" headerText="Historial" expandable="true" expanded="false">
+				<TextArea width="100%" name="Bita" id="Bita_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="false" visible="true" value="{ path: 'Bita', type: 'sap.ui.model.odata.type.String' , constraints:{ nullable:false } }"/>
+				<TextArea width="100%" name="Bita" id="Bita_edit" liveChange="_validateSaveEnablement" enabled="true" visible="true" value=""/>	
+			</Panel>
+			
+		<!--Botones barra inferior-->
+		</semantic:content>
+		<semantic:editAction>
+			<semantic:EditAction id="edit" press="onEdit"/>
+		</semantic:editAction>
+		<semantic:customFooterContent>
+			<Button enabled="true" id="deleteButton" press="onDelete" text="Delete"/>
+		</semantic:customFooterContent>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{detailView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:DetailPage>
+</mvc:View>

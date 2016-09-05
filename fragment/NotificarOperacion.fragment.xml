@@ -1,0 +1,71 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns="sap.m">
+	<Dialog class="sapUiContentPadding" title="Notificar Operación" xmlns:l="sap.ui.layout">
+		
+		<!--<Panel class="sapUiResponsiveMargin" headerText="Pos. Conjunto" expandable="true" expanded="true">-->
+			<content>
+				<l:VerticalLayout class="sapUiContentPadding" width="100%">
+					<l:content>
+						<Label design="Bold" required="false" text="Num. Orden"/>
+						<Input id="txt_orden" enabled="true" editable="false" value=""/>
+						
+						<Label design="Bold" required="false" text="Operación"/>
+						<HBox>
+							<items>
+								<Input id="txt_posicion" enabled="true" editable="false" value="" width="50%"/>
+								<Input id="txt_actividad" enabled="true" editable="false" value=""/>
+							</items>
+						</HBox>
+						
+						<Label design="Bold" required="true" text="Trabajo Real"/>
+						<HBox>
+							<items>
+								<Input id="txt_trabajoreal_tiempo" type="Number" enabled="true" value="" placeholder="Duración" textAlign="Right" liveChange="f_actualizar_fecha_hora_fin"/>
+								<Input id="txt_trabajoreal_unidad" value="" editable="false" textAlign="Left"/>
+							</items>
+						</HBox>
+						
+						<!--<HBox>-->
+						<!--	<items>-->
+								<Label design="Bold" required="false" text="Notificación Final"/>
+								<CheckBox id="cbx_notificacion_final"/>
+						<!--	</items>-->
+						<!--</HBox>-->
+							
+						<!--<HBox>-->
+						<!--	<items>	-->
+								<Label design="Bold" required="false" text="Compensar Reserva"/>
+								<CheckBox id="cbx_compensar_reserva"/>
+						<!--	</items>-->
+						<!--</HBox>-->
+						
+						<Label design="Bold" required="true" text="Inicio de Trabajo"/>
+						<VBox>
+							<items>
+								<DatePicker id="txt_inicio_fecha" valueFormat="yyyy-MM-dd" displayFormat="" placeholder="Fecha inicio" change="f_actualizar_fecha_hora_fin"/>
+								<TimePicker id="txt_inicio_hora" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Hora inicio" change="f_actualizar_fecha_hora_fin"/>
+							</items>
+						</VBox>
+							
+						<Label design="Bold" required="false" text="Fin de Trabajo"/>
+						<VBox>
+							<items>
+								<DatePicker id="txt_fin_fecha" editable="false" valueFormat="yyyy-MM-dd" displayFormat="" placeholder="Fecha fin" 
+								value="{type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}" change="handleChange"/>
+								<TimePicker id="txt_fin_hora" editable="false" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="Hora fin"
+								change="handleChange"/>
+							</items>
+						</VBox>
+							
+					</l:content>
+				</l:VerticalLayout>
+			</content>
+		<!--</Panel>-->
+		
+		<beginButton>
+			<Button id="btn_operacion_cancela" press="f_close_dialogo_notificar" text="Cancelar" type="Reject"/>
+		</beginButton>
+		<endButton>
+			<Button id="btn_operacion_notificar" press="f_crear_notificar" text="Notificar" type="Accept"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

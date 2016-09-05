@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	
+	<SelectDialog
+		id="list_actividad"
+		title="Actividad PM"
+		class="sapUiPopupWithPadding"
+		items="{ActividadSet}"
+		search="_handleValueHelpSearch_actividad"
+		confirm="_handleValueHelpClose_actividad"
+		cancel="_handleValueHelpClose_actividad"
+		>
+		
+		<StandardListItem
+			title="{Ilart}"
+			description="{Auart}-{Ilart}" />
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	
+	<SelectDialog
+		id="list_status"
+		title="Estatus Usuario"
+		class="sapUiPopupWithPadding"
+		items="{StatusSet}"
+		search="_handleValueHelpSearch_status"
+		confirm="_handleValueHelpClose_status"
+		cancel="_handleValueHelpClose_status"
+		>
+		
+		<StandardListItem
+			title="{Estat}"
+			description="{Txt04}-{Txt30}" />
+	</SelectDialog>
+</core:FragmentDefinition>

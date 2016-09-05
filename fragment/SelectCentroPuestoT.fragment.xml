@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns="sap.m">
+	<Dialog class="sapUiContentPadding" title="Seleccione Centro - Puesto" xmlns:l="sap.ui.layout">
+		<content>
+			<l:VerticalLayout class="sapUiContentPadding" width="100%">
+				<l:content>
+					<Label design="Bold" required="true" text="Centro"/>
+					<Select id="cmb_centro" items="{/CentroSet}" change="f_get_puestos" width="100%">
+						<core:Item key="{Werks}" text="{Werks} - {Name1}"/>
+					</Select>
+					
+					<Label design="Bold" required="true" text="Puesto Trabajo"/>
+					<Select id="cmb_puesto_tra" items="{/PuestoTrabajoSet}" width="100%" busy="true">
+						<core:Item key="{Arbpl}" text="{Arbpl} - {Denomi}"/>
+					</Select>
+				</l:content>
+			</l:VerticalLayout>
+		</content>
+		<beginButton>
+			<Button id="btn_cancela_moderno" press="f_retornar_launchpad" text="Cancelar" type="Back"/>
+		</beginButton>
+		<endButton>
+			<Button id="btn_moderno_select" press="f_close_dialogo_puest_centr" text="Ingresar" type="Accept"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
